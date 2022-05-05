@@ -5,13 +5,16 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+/**
+ * <p>ProductView is the GUI Window set for configuring the products in the database, as having buttons for adding, removing, updating or viewing all products</p>
+ */
 public class ProductView extends JPanel {
     private JButton addButton;
     private JButton editButton;
     private JButton deleteButton;
     private JButton viewButton;
     private JButton backButton;
-    JFrame frame = new JFrame ("Products");
+    private JFrame frame = new JFrame ("Products");
 
     public ProductView() {
         //construct components
@@ -63,7 +66,6 @@ public class ProductView extends JPanel {
         addButton.addActionListener(actionListener);
         editButton.addActionListener(actionListener);
         deleteButton.addActionListener(actionListener);
-        viewButton.addActionListener(actionListener);
         backButton.addActionListener(backListener);
     }
 
@@ -89,5 +91,10 @@ public class ProductView extends JPanel {
 
     public void close(){
         frame.setVisible(false);
+    }
+
+    public void addViewListener(ActionListener a){
+
+        viewButton.addActionListener(a);
     }
 }

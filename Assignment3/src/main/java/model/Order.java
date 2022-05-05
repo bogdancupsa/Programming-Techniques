@@ -1,8 +1,12 @@
 package model;
 
+/**
+ * <p>Order represents the model of an order, having the ids of itself, the client, product, the price per unit of the product, the quantity desired and the total to be paid.</p>
+ */
 public class Order {
+    private int orderId;
     private int clientId;
-    private String productName;
+    private int productId;
     private double price;
     private int quantity;
     private double total;
@@ -15,12 +19,12 @@ public class Order {
         this.clientId = clientId;
     }
 
-    public String getProductName() {
-        return productName;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public double getPrice() {
@@ -45,5 +49,13 @@ public class Order {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

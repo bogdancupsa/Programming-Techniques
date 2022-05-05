@@ -8,8 +8,11 @@ public class StartView extends JPanel {
     private JButton clientButton;
     private JButton productsButton;
     private JButton orderButton;
-    JFrame frame = new JFrame();
+    private JFrame frame = new JFrame();
 
+    /**
+     * <p>StartView represents the first GUI window met at the program start up. It contains the button that selects which table of the database is to be configured.</p>
+     */
     public StartView() {
         //construct components
         clientButton = new JButton ("Configure Clients");

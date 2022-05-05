@@ -1,7 +1,11 @@
 package presentation;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * <p>The controller manages the GUI windows and retrieves/gives the necessary data from the GUI and to the business logic objects. This has as instance variables objects of each type of GUI</p>
+ */
 public class Controller {
 
     private final StartView startView;
@@ -11,6 +15,9 @@ public class Controller {
     private final ClientBoxView clientBox;
     private final ProductBoxView productBox;
 
+    /**
+     * <p>This class resolves the switch from one GUI object to another, based on the source of the ActionEvent</p>
+     */
     class Listener implements ActionListener{
 
         @Override
@@ -28,6 +35,9 @@ public class Controller {
         }
     }
 
+    /**
+     * This class acts as the function of the "Go back" button
+     */
     class BackListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -41,23 +51,25 @@ public class Controller {
         }
     }
 
+    /**
+     * <p>This opens the GUI interfaces that require the inputs for the products/clients</p>
+     */
     class ButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
             if (clientView.getAddButton().equals(source) || clientView.getEditButton().equals(source)) {
-                clientView.close();
                 clientBox.display();
             } else if (clientView.getDeleteButton().equals(source)) {
-                System.out.println("delete A");
+                clientBox.display();
             } else if (clientView.getViewButton().equals(source)) {
                 System.out.println("view A");
             } else if (productView.getAddButton().equals(source)) {
-                System.out.println("add P");
+                productBox.display();
             } else if (productView.getEditButton().equals(source)) {
-                System.out.println("edit P");
+                productBox.display();
             } else if (productView.getDeleteButton().equals(source)) {
-                System.out.println("delete P");
+                productBox.display();
             } else {
                 System.out.println("view P");
             }
@@ -75,5 +87,49 @@ public class Controller {
         clientView.addActionListeners(new ButtonListener(), new BackListener());
         productView.addActionListeners(new ButtonListener(), new BackListener());
         startView.display();
+    }
+
+    public ClientView getClientView() {
+        return clientView;
+    }
+
+    public ProductView getProductView() {
+        return productView;
+    }
+
+    public OrderView getOrderView() {
+        return orderView;
+    }
+
+    public ClientBoxView getClientBox() {
+        return clientBox;
+    }
+
+    public ProductBoxView getProductBox() {
+        return productBox;
+    }
+
+    public void addActionListener(char c, ActionListener al1, ActionListener al2, ActionListener al3){
+        if(c == 'c'){
+            clientBox.addActionListener(al1, al2, al3);
+        }else{
+            productBox.addActionListener(al1, al2, al3);
+        }
+    }
+
+    public void addViewListener(char c, ActionListener a){
+        if(c == 'c'){
+            clientView.addViewListener(a);
+        }else{
+            productView.addViewListener(a);
+        }
+    }
+
+    public void addOrderListener(ActionListener al){
+        orderView.addActionListeners(al);
+    }
+
+    public void printMessage(String message){
+        JOptionPane.showMessageDialog(orderView,message);
     }
 }

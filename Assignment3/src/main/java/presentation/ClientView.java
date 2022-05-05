@@ -5,13 +5,16 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+/**
+ * <p>ClientView is the GUI Window set for configuring the clients in the database, as having buttons for adding, removing, updating or viewing all clients</p>
+ */
 public class ClientView extends JPanel {
     private JButton addButton;
     private JButton editButton;
     private JButton deleteButton;
     private JButton viewButton;
     private JButton backButton;
-    JFrame frame = new JFrame ("Clients");
+    private JFrame frame = new JFrame ("Clients");
 
     public ClientView() {
         //construct components
@@ -80,15 +83,28 @@ public class ClientView extends JPanel {
         return backButton;
     }
 
+    /**
+     * <p>Adds the ActionListeners for the Add/Update/Remove/Back buttons</p>
+     * @param actionListener the ActionListener that opens the ClientBoxView instance
+     * @param backListener the ActionListener that opens the StartView instance
+     */
     public void addActionListeners(ActionListener actionListener, ActionListener backListener){
         addButton.addActionListener(actionListener);
         editButton.addActionListener(actionListener);
         deleteButton.addActionListener(actionListener);
-        viewButton.addActionListener(actionListener);
         backButton.addActionListener(backListener);
     }
 
     public void close(){
         frame.setVisible(false);
+    }
+
+    /**
+     * <p>Adds an action listener to the button that will show all clients from the database.</p>
+     * @param a the ActionListener to be added
+     */
+    public void addViewListener(ActionListener a){
+
+        viewButton.addActionListener(a);
     }
 }

@@ -1,10 +1,13 @@
 package model;
 
+/**
+ * <p>Client represents the model of a client, with id, name, address and age.</p>
+ */
 public class Client {
-    private int id;
+    private Integer id;
     private String name;
     private String address;
-    private int age;
+    private Integer age;
 
     public int getId() {
         return id;
@@ -36,5 +39,28 @@ public class Client {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Client(String name, String address, int age) {
+        this.name = name;
+        this.address = address;
+        this.age = age;
+    }
+
+    public Client(int id, String name, String address, int age) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

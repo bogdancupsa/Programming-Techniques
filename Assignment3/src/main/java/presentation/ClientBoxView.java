@@ -2,9 +2,13 @@ package presentation;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
 
+/**
+ * <p>ClientBoxView is used to get the information for the clients that are to be added, removed or updated.</p>
+ */
 public class ClientBoxView extends JPanel {
     private JTextField idField;
     private JLabel idLabel;
@@ -16,7 +20,9 @@ public class ClientBoxView extends JPanel {
     private JTextField ageField;
     private JLabel instrLabel;
     private JButton addButton;
-    JFrame frame = new JFrame ("Add/Update Clients");
+    private JButton updateButton;
+    private JButton removeButton;
+    private JFrame frame = new JFrame ("Add/Update Clients");
 
     public ClientBoxView() {
         //construct components
@@ -28,11 +34,13 @@ public class ClientBoxView extends JPanel {
         addressField = new JTextField (5);
         ageLabel = new JLabel ("Client's Age:");
         ageField = new JTextField (5);
-        instrLabel = new JLabel ("*Only to be inserted when updating a client");
-        addButton = new JButton ("Add/Update Client");
+        instrLabel = new JLabel ("For removal, input only the id");
+        addButton = new JButton ("Add Client");
+        updateButton = new JButton("Update Client");
+        removeButton = new JButton("Remove Client");
 
         //adjust size and set layout
-        setPreferredSize (new Dimension (624, 215));
+        setPreferredSize (new Dimension (650, 215));
         setLayout (null);
         setBackground(Color.darkGray);
 
@@ -47,6 +55,8 @@ public class ClientBoxView extends JPanel {
         add (ageField);
         add (instrLabel);
         add (addButton);
+        add(updateButton);
+        add(removeButton);
 
         //set component bounds (only needed by Absolute Positioning)
         idField.setBounds (140, 5, 125, 30);
@@ -61,16 +71,22 @@ public class ClientBoxView extends JPanel {
         ageLabel.setBounds (20, 110, 115, 30);
         ageLabel.setForeground(Color.WHITE);
         ageField.setBounds (140, 110, 100, 30);
-        instrLabel.setBounds (280, 5, 275, 30);
+        instrLabel.setBounds (280, 5, 325, 30);
         instrLabel.setForeground(Color.WHITE);
-        addButton.setBounds (210, 160, 185, 45);
+        addButton.setBounds (250, 160, 185, 45);
         addButton.setBackground(Color.gray);
         addButton.setForeground(Color.black);
+        updateButton.setBounds (60, 160, 185, 45);
+        updateButton.setBackground(Color.gray);
+        updateButton.setForeground(Color.black);
+        removeButton.setBounds (440, 160, 185, 45);
+        removeButton.setBackground(Color.gray);
+        removeButton.setForeground(Color.black);
     }
 
 
     public void display(){
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().add (this);
         frame.pack();
         frame.setVisible (true);
@@ -78,5 +94,30 @@ public class ClientBoxView extends JPanel {
 
     public void close(){
         frame.setVisible(false);
+    }
+
+    /**
+     * <p>Used to get the data from the window to the controller</p>
+     * @return returns the inputs from the user in an ArrayList containing String objects.
+     */
+    public ArrayList<String> getInput(){
+        ArrayList<String> inputs = new ArrayList<>();
+        inputs.add(idField.getText());
+        inputs.add(nameField.getText());
+        inputs.add(addressField.getText());
+        inputs.add(ageField.getText());
+        return inputs;
+    }
+
+    /**
+     * <p>Adds the ActionListener objects set as parameters to the JButtons of the interface</p>
+     * @param al1 the ActionListener for the "Add Client" Button
+     * @param al2 the ActionListener for the "Update Client" Button
+     * @param al3 the ActionListener for the "Remove Client" Button
+     */
+    public void addActionListener(ActionListener al1, ActionListener al2, ActionListener al3){
+        addButton.addActionListener(al1);
+        updateButton.addActionListener(al2);
+        removeButton.addActionListener(al3);
     }
 }

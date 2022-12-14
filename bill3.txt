@@ -1,0 +1,4 @@
+06/07/2022 10:56
+Client's id: 4
+Products bought: 
+Total paid: 203.97

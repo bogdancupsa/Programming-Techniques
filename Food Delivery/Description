@@ -1,0 +1,2 @@
+This assignment had us create a food delivery management system, from which we used file reading (getting all the products from an .xml file), used the Observer and
+Composite Design Patterns. A key concept that was used for this assignment was lambda functions and serializing objects.

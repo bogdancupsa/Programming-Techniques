@@ -1,0 +1,3 @@
+This assignment represents a simulation of queues, where each "client" should join the queue which has the minimum waiting time. The main subject of this assignment was
+using threads for each queue. In the simulation files, there can be seen the state each queue at each second. The clients can be seen in the format 
+(id, arrival time, waiting time). 
